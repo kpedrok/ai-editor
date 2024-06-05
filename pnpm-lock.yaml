@@ -19,7 +19,7 @@ importers:
         specifier: ^8.4.27
         version: 8.4.38
 
-  apps/web:
+  apps/ai-editor:
     dependencies:
       '@radix-ui/react-dialog':
         specifier: ^1.0.5
