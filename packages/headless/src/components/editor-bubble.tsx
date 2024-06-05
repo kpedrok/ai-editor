@@ -1,7 +1,8 @@
-import { BubbleMenu, isNodeSelection, useCurrentEditor } from "@tiptap/react";
-import { useMemo, useRef, useEffect, forwardRef } from "react";
+'use client'
 import type { BubbleMenuProps } from "@tiptap/react";
+import { BubbleMenu, isNodeSelection, useCurrentEditor } from "@tiptap/react";
 import type { ReactNode } from "react";
+import { forwardRef, useEffect, useMemo, useRef } from "react";
 import type { Instance, Props } from "tippy.js";
 
 export interface EditorBubbleProps extends Omit<BubbleMenuProps, "editor"> {
@@ -20,7 +21,7 @@ export const EditorBubble = forwardRef<HTMLDivElement, EditorBubbleProps>(
       instanceRef.current.popperInstance?.update();
     }, [tippyOptions?.placement]);
 
-    const bubbleMenuProps: Omit<BubbleMenuProps, "children"> = useMemo(() => {
+    const bubbleMenuProps = useMemo(() => {
       const shouldShow: BubbleMenuProps["shouldShow"] = ({ editor, state }) => {
         const { selection } = state;
         const { empty } = selection;
@@ -39,7 +40,7 @@ export const EditorBubble = forwardRef<HTMLDivElement, EditorBubbleProps>(
       return {
         shouldShow,
         tippyOptions: {
-          onCreate: (val) => {
+          onCreate: (val: any) => {
             instanceRef.current = val;
           },
           moveTransition: "transform 0.15s ease-out",
