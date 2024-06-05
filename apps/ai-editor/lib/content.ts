@@ -25,11 +25,10 @@ export const defaultEditorContent = {
             {
               type: "paragraph",
               content: [
-                { type: "text", text: "AI autocomplete (type " },
-                { type: "text", marks: [{ type: "code" }], text: "++" },
+                { type: "text", text: "AI autocomplete" },
                 {
                   type: "text",
-                  text: " to activate, or select from slash menu)",
+                  text: "select a text and select from the bubble menu",
                 },
               ],
             },
