@@ -25,7 +25,7 @@ export async function POST(req: Request): Promise<Response> {
     const ip = req.headers.get("x-forwarded-for");
     const ratelimit = new Ratelimit({
       redis: kv,
-      limiter: Ratelimit.slidingWindow(50, "1 d"),
+      limiter: Ratelimit.slidingWindow(100, "1 d"),
     });
 
     const { success, limit, reset, remaining } = await ratelimit.limit(`novel_ratelimit_${ip}`);
@@ -50,7 +50,7 @@ export async function POST(req: Request): Promise<Response> {
         content:
           "You are an AI writing assistant that continues existing text based on context from prior text. " +
           "Give more weight/priority to the later characters than the beginning ones. " +
-          "Limit your response to no more than 1000 characters, but make sure to construct complete sentences." +
+          
           "Use Markdown formatting when appropriate.",
       },
       {
@@ -63,7 +63,6 @@ export async function POST(req: Request): Promise<Response> {
         role: "system",
         content:
           "You are an AI writing assistant that improves existing text. " +
-          "Limit your response to no more than 1000 characters, but make sure to construct complete sentences." +
           "Use Markdown formatting when appropriate.",
       },
       {
@@ -99,7 +98,6 @@ export async function POST(req: Request): Promise<Response> {
         role: "system",
         content:
           "You are an AI writing assistant that fixes grammar and spelling errors in existing text. " +
-          "Limit your response to no more than 1000 characters, but make sure to construct complete sentences." +
           "Use Markdown formatting when appropriate.",
       },
       {
